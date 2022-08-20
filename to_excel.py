@@ -9,14 +9,19 @@ with open('tws_opc.txt', 'r') as file:
       irofile = iter(fh)
 
       for i in irofile:
+          #Get the name of application and append in a list
             if "APPLICATION" in i:
                 app_list.append(i.split(':')[1].replace('\n', ''))
+            #Get the description and append in a list
             elif "DESCRIPTIVE" in i:
                 desc_list.append(i.split(':')[1].replace('\n', ''))
+            #Get the job name and append in a list
             elif "JOB NAME" in i:
                 joblist.append(i.split(':')[1].replace('\n', ''))
+                #Get the name of jobs if have more than one
                 while(True):
                     try:
+                        #function next used to go to another line within the for loop
                         i = next(irofile)
                         if "JOB NAME" in i:
                             joblist.append(i.split(':')[1].replace('\n', ''))
